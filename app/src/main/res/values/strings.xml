@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GPDemo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="desc">Medicaid services and centers for Medicare reported that 50% of Americans had multiple chronic diseases, which led the US health care to spend around $3.3 trillion in 2016, which amounts to $10,348 per person in the US.
+ Moreover, the World Health Organization and World Economic Forum reported that India had a huge loss of $236.6 billion by 2015 because of fatal diseases, caused by malnutrition and morbid lifestyles. Such expenditures revealed how prone people are to a spectrum of diseases, which showcased how vital it is to detect diseases early, to consequently reduce the fatality of these maladies.
+In addition, early disease prediction can lessen the financial pressure on the economy and ensure better maintenance on the overall well-being of the community.
+The Diseases Prediction program aims to predict if a person would get a certain chronic disease in the future. As that helps to diagnose disease in early stages or help them improve their lifestyle to avoid getting sick at all.
+Also, collecting data about patients can be very useful for health organizations and hospitals as it will allow them to better distribute health care equipment and medicine based on the number of patients in a certain area.
+
+</string>
+
+</resources>

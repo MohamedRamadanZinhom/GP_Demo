@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Result">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:layoutDirection="ltr">
+
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="#0d6e6a"
+           android:textSize="20sp"
+           android:text="Your Percentage to be inflicted"
+           android:layout_marginTop="20dp"
+           android:layout_marginEnd="10dp"
+           android:layout_marginStart="10dp"
+           android:textStyle="bold"
+           android:layout_gravity="center_horizontal"
+           />
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <ProgressBar
+               android:id="@+id/progress_result"
+               android:layout_width="200dp"
+               android:layout_height="200dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_marginTop="50dp"
+               android:indeterminateOnly="false"
+               android:progressDrawable="@drawable/circle"
+               android:progress="60"
+               />
+
+           <TextView
+               android:id="@+id/txt_result_Prediction"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="60 %"
+               android:textColor="@color/red"
+               android:textSize="40sp"
+               android:textStyle="bold"
+               app:layout_constraintBottom_toBottomOf="@+id/progress_result"
+               app:layout_constraintEnd_toEndOf="@+id/progress_result"
+               app:layout_constraintStart_toStartOf="@+id/progress_result"
+               app:layout_constraintTop_toTopOf="@+id/progress_result" />
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       <TextView
+           android:id="@+id/txt_result_accuracy"
+           android:layout_marginTop="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="The Accuracy is 95%"
+           android:textSize="20sp"
+           android:textColor="@color/green"
+           android:textStyle="bold"
+           android:layout_gravity="center"
+           />
+
+       <TextView
+           android:id="@+id/txt_result_note"
+           android:layout_marginTop="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="You are in great danger, you should see a doctor "
+           android:textSize="20sp"
+           android:textColor="@color/red"
+           android:textStyle="bold"
+           android:layout_gravity="center"
+           android:padding="20dp"
+           android:background="@drawable/questiontext"
+           android:layout_margin="20dp"
+           />
+
+
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintBottom_toBottomOf="parent">
+
+
+                   <androidx.appcompat.widget.AppCompatButton
+                       android:layout_width="200dp"
+                       android:layout_height="wrap_content"
+                       android:text="OK"
+                       android:textSize="15sp"
+                       android:textStyle="bold"
+                       android:textColor="@color/white"
+                       android:background="@drawable/button"
+                       android:layout_gravity="center_horizontal"
+                       android:gravity="center"
+                       android:layout_marginBottom="20dp"
+                       android:id="@+id/resultbtn"
+                       />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Go To Statistics..?"
+                       android:textStyle="bold"
+                       android:textColor="#0d6e6a"
+                       android:layout_gravity="center"
+                       android:layout_marginBottom="35dp"
+                       android:id="@+id/result_txt_to_statistics"/>
+
+
+               </LinearLayout>
+
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+   </LinearLayout>
+
+</FrameLayout>

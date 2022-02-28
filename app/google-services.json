@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "210258898419",
+    "firebase_url": "https://gpdemo-94192-default-rtdb.firebaseio.com",
+    "project_id": "gpdemo-94192",
+    "storage_bucket": "gpdemo-94192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210258898419:android:b2d4992a1f84a10fedb686",
+        "android_client_info": {
+          "package_name": "com.mohamed_ramadan.code.gpdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210258898419-ca6952nuvermc2nlj81llo0hmd3btkd1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mohamed_ramadan.code.gpdemo",
+            "certificate_hash": "07a2662f4facb447f9f311e70adb9e14f0c5e406"
+          }
+        },
+        {
+          "client_id": "210258898419-jbbjlmoa6i59ltpspqiec9q7kbo7vo79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_uL1Qpa_YsQLkDvCUC20_Ph5db2zDTck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210258898419-jbbjlmoa6i59ltpspqiec9q7kbo7vo79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
