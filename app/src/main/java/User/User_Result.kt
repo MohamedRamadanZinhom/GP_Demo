@@ -7,6 +7,8 @@ class User_Result(val userid:Int,val disease_id:Int,val result:Float ,val locati
 
     public fun Add(){
 
+
+
     }
 
     public fun Search(): User? {

@@ -7,27 +7,16 @@ import androidx.room.*
 @Dao
 interface QuestionDao {
 
+    @Query(" SELECT * FROM Questions ORDER BY ID DESC ")
+    suspend fun ReadAllData():List<Question>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun InsertOrUPdate(question: Question)
 
-    @Insert
-    fun AddQuestion(question: Question)
-    @Update
-    fun Update(question: Question)
     @Delete
-    fun Delete(question: Question)
-    @Query("Delete From Questions")
-    fun DeleteAll()
+    suspend fun Delete(question:Question)
 
-    @Query("Select * From user")
-    fun  ReadAll( ): LiveData<List<Question>>
-
-    @Query("Select * From Questions where ID=id")
-    fun getQuestion(id:Int)
-
-
-
-
-
-
+    @Query("Delete From Questions ")
+    suspend fun DeleteAll()
 
 }

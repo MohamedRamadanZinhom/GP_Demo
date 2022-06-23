@@ -11,13 +11,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/f_img"
+            android:id="@+id/fourth_img"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/first_screan_idea"
+            android:src="@drawable/heartimg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.322" />
@@ -26,23 +26,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="protect your self by answering some question \n and Predict if you injured or not"
+            android:text="Why you are Late ?! Now You can predict \n whether you have heart disease or not,\n go ahead and save your life."
             android:textSize="15sp"
             android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.643"
-            app:flow_horizontalBias="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/fourth_img"
+            app:layout_constraintVertical_bias="0.164" />
 
         <TextView
-            android:id="@+id/next1"
+            android:id="@+id/next4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="Finish"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.924"

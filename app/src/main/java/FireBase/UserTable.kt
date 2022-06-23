@@ -3,6 +3,8 @@ package FireBase
 import User.User
 import android.content.Context
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DatabaseError
@@ -10,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -26,10 +29,12 @@ class UserTable {
 
 
 
+
     fun Add(user:User){
         Ref=database.getReference("Users")
-        Ref.push().key
-        Ref.child(user.ID).setValue(user)
+        val auth= FirebaseAuth.getInstance()
+        val id=auth.uid
+        Ref.child(id.toString()).setValue(user)
     }
 
     public fun Search(user:User){
@@ -80,22 +85,6 @@ class UserTable {
 
     }
 
-  private  fun setSize_( ){
-
-      GlobalScope.launch(Dispatchers.IO) {
-          val v= async { Count() }
-          size=v.await()
-      }
-
-
-
-  }
-
-    public fun _GetSize():Int{
-        setSize_()
-        return this.size
-
-    }
 
 
 

@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mohamed_ramadan.code.gpdemo.R
+import kotlinx.coroutines.*
 import kotlin.properties.Delegates
 
 
@@ -16,8 +17,12 @@ import kotlin.properties.Delegates
 
 
 
-     var v:Boolean=false
+
      private var auth: FirebaseAuth = Firebase.auth
+
+     fun getInstance():FirebaseAuth{
+         return this.auth
+     }
 
     public fun Register(user: User):Boolean{
         //Create New AuthenticationUser
@@ -42,22 +47,25 @@ import kotlin.properties.Delegates
         return check
     }
 
-    public fun LogIn(user:User) :Boolean{
+      fun LogIn(user:User) :Boolean{
+
+        var check:Boolean=false
 
         val fireAuth= FirebaseAuth.getInstance()
-        fireAuth.signInWithEmailAndPassword(user.Email,user.Password)
-            .addOnCompleteListener(ctx){ Task->
-                val x = if(Task.isSuccessful){
-                    Toast.makeText(ctx,"Login Success ", Toast.LENGTH_SHORT).show()
-                    true
 
-                } else {
-                    Toast.makeText(ctx,"Login Failed ", Toast.LENGTH_SHORT).show()
-                    false
-                }
-               this.v=x
-        }
-        return this.v
+       val z=   fireAuth.signInWithEmailAndPassword(user.Email,user.Password)
+                  .addOnCompleteListener(ctx){ Task->
+                      check = if(Task.isSuccessful){
+                          Toast.makeText(ctx,"Login Success ", Toast.LENGTH_SHORT).show()
+                          true
+
+                      } else {
+                          Toast.makeText(ctx,"Login Failed ", Toast.LENGTH_SHORT).show()
+                          false
+                      }
+                  }
+
+        return z.isSuccessful
     }
 
 

@@ -9,19 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.navigation.Navigation
+import androidx.room.util.StringUtil
+import com.google.firebase.auth.FirebaseAuth
+import com.mohamed_ramadan.code.gpdemo.R
+import kotlinx.android.synthetic.main.fragment_dash_board.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.coroutines.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Login.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Login : Fragment() {
 
 
@@ -46,10 +44,20 @@ class Login : Fragment() {
 
         buttonLogin.setOnClickListener{
 
-            val user =User("00","00",email.text.toString() ,pass.text.toString())
-            if(!createRequest(user)){
-                Navigation.findNavController(view).navigate(R.id.action_login_to_app_dash)
+            val email=email.text.toString()
+            val password=pass.text.toString()
+
+            if (!(email.isEmpty() || password.isBlank()) && !(password.isEmpty() || password.isBlank())){
+                val user =User("00","00",email,password)
+                view.progressBar2.visibility=View.VISIBLE
+                LogIn(user)
             }
+            else
+            {
+                Toast.makeText(this.requireContext(),"Please enter the data ", Toast.LENGTH_SHORT).show()
+            }
+
+
 
         }
 
@@ -61,10 +69,24 @@ class Login : Fragment() {
 
 
 
-    private fun createRequest(user: User): Boolean {
 
-        val fireAuth = Authentication(this.requireActivity())
-        return fireAuth.LogIn(user)
+
+    fun LogIn(user:User){
+
+        val fireAuth= FirebaseAuth.getInstance()
+
+        fireAuth.signInWithEmailAndPassword(user.Email,user.Password)
+            .addOnCompleteListener(this.requireActivity()){ Task->
+                if(Task.isSuccessful){
+                    Toast.makeText(this.requireContext(),"Login Success ", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(this.requireView()).navigate(R.id.action_login_to_app_dash)
+                }
+                else {
+                    Toast.makeText(this.requireContext(),"Login Failed ", Toast.LENGTH_SHORT).show()
+                    this.requireView().progressBar2.visibility=View.GONE
+                }
+            }
+
 
     }
 

@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_result_to_statistics"
             app:destination="@id/statistics" />
+        <argument
+            android:name="APIResult"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/statistics"
@@ -85,8 +88,14 @@
             android:id="@+id/action_app_dash_to_statistics"
             app:destination="@id/statistics" />
         <action
-            android:id="@+id/action_app_dash_to_app_idea"
-            app:destination="@id/app_idea" />
+            android:id="@+id/action_app_dash_to_information_and_Data"
+            app:destination="@id/information_and_Data" />
+        <action
+            android:id="@+id/action_app_dash_to_pager_container"
+            app:destination="@id/pager_container" />
+        <action
+            android:id="@+id/action_app_dash_to_spalsh"
+            app:destination="@id/spalsh" />
     </fragment>
     <fragment
         android:id="@+id/my_profile"
@@ -106,5 +115,49 @@
         android:id="@+id/app_idea"
         android:name="com.mohamed_ramadan.code.gpdemo.app_idea"
         android:label="fragment_app_idea"
-        tools:layout="@layout/fragment_app_idea" />
+        tools:layout="@layout/fragment_app_idea" >
+        <action
+            android:id="@+id/action_app_idea_to_second_screen"
+            app:destination="@id/second_screen" />
+    </fragment>
+    <fragment
+        android:id="@+id/information_and_Data"
+        android:name="com.mohamed_ramadan.code.gpdemo.information_and_Data"
+        android:label="fragment_information_and__data"
+        tools:layout="@layout/fragment_information_and__data" />
+    <fragment
+        android:id="@+id/second_screen"
+        android:name="com.mohamed_ramadan.code.gpdemo.second_screen"
+        android:label="fragment_second_screen"
+        tools:layout="@layout/fragment_second_screen" >
+        <action
+            android:id="@+id/action_second_screen_to_third_screen"
+            app:destination="@id/third_screen" />
+    </fragment>
+    <fragment
+        android:id="@+id/third_screen"
+        android:name="com.mohamed_ramadan.code.gpdemo.third_screen"
+        android:label="fragment_third_screen"
+        tools:layout="@layout/fragment_third_screen" >
+        <action
+            android:id="@+id/action_third_screen_to_fourth_screan"
+            app:destination="@id/fourth_screan" />
+    </fragment>
+    <fragment
+        android:id="@+id/fourth_screan"
+        android:name="com.mohamed_ramadan.code.gpdemo.fourth_screan"
+        android:label="fragment_fourth_screan"
+        tools:layout="@layout/fragment_fourth_screan" />
+    <fragment
+        android:id="@+id/pager_container"
+        android:name="com.mohamed_ramadan.code.gpdemo.Pager_container"
+        android:label="fragment_pager_container"
+        tools:layout="@layout/fragment_pager_container" >
+        <action
+            android:id="@+id/action_pager_container_to_app_idea2"
+            app:destination="@id/app_idea" />
+        <action
+            android:id="@+id/action_pager_container_to_app_dash"
+            app:destination="@id/app_dash" />
+    </fragment>
 </navigation>

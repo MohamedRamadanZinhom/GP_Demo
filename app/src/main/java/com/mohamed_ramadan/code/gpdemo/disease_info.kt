@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import com.mohamed_ramadan.code.gpdemo.R
 
 
 // TODO: Rename parameter arguments, choose names that match

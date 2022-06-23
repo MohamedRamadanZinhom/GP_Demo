@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_app_idea.view.*
+import kotlinx.android.synthetic.main.fragment_second_screen.view.*
+import kotlinx.android.synthetic.main.fragment_third_screen.view.*
 
 
-class app_idea : Fragment() {
+class third_screen : Fragment() {
 
 
     override fun onCreateView(
@@ -18,16 +20,14 @@ class app_idea : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fragment_app_idea, container, false)
+        val view = inflater.inflate(R.layout.fragment_third_screen, container, false)
 
         val viewpager= activity?.findViewById<ViewPager2>(R.id.viewpager)
-
-        view.next1.setOnClickListener{
-            viewpager?.currentItem=1
+        view.next3.setOnClickListener{
+            viewpager?.currentItem=3
         }
 
         return view
     }
-
 
 }

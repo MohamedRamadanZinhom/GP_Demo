@@ -17,17 +17,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.navigation.Navigation
 import User.User
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.mohamed_ramadan.code.gpdemo.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Register.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Register : Fragment() {
 
 
@@ -36,7 +34,8 @@ class Register : Fragment() {
     private lateinit var name:EditText
     private lateinit var email:EditText
     private lateinit var password:EditText
-    private var istrue:Boolean=false
+
+
 
 
     override fun onCreateView(
@@ -61,22 +60,13 @@ class Register : Fragment() {
         changepasswordtextcolor(view)
         //-------
 
+
+
+
         buttonRegister.setOnClickListener{
-
-
-
-
-                btnaction()
-
-           val c= UserTable()._GetSize()
-
-                //navigate to Login user
-              Toast.makeText(this.context, "User Count: $c", Toast.LENGTH_SHORT).show()
-
-
-                Navigation.findNavController(view).navigate(R.id.action_register_to_login)
-
-
+            btnaction()
+            //Toast.makeText(this.context, "User Count: $c", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(view).navigate(R.id.action_register_to_login)
         }
 
 
@@ -86,10 +76,7 @@ class Register : Fragment() {
 
 
 
-    private fun createRequest(user: User):Boolean {
-        val fireAuth = Authentication(this.requireActivity())
-        return fireAuth.Register(user)
-    }
+
 
     private fun check():Boolean{
 
@@ -132,22 +119,19 @@ class Register : Fragment() {
             //create user
             if(check())
             {
-
-
                 //----------------------------------
+
                 val user = User((3).toString(), name.text.toString(), email.text.toString(), password.text.toString())
-                //make Authentication by adding new user
-                adduser(user)
-                createRequest(user)
+                //making Register Process
+                Register(user)
+
 
             }
 
 
     }
 
-    private fun adduser(user:User){
-       UserTable().Add(user)
-    }
+
 
     private fun changepasswordtextcolor(view:View){
 
@@ -157,13 +141,58 @@ class Register : Fragment() {
             {
                 x.counterTextColor= ColorStateList.valueOf(Color.GREEN)
                 x.setHelperTextColor(ColorStateList.valueOf(Color.GREEN))
+                x.helperText=""
             }
             else
             {
+                x.helperText="Require at Least 6 Character "
                 x.counterTextColor= ColorStateList.valueOf(Color.RED)
+                x.setHelperTextColor(ColorStateList.valueOf(Color.RED))
             }
         }
     }
+
+
+     fun Register(user: User){
+
+        val fireAuth= FirebaseAuth.getInstance()
+
+        val context =this.requireActivity()
+
+        //Create New AuthenticationUser
+        fireAuth.createUserWithEmailAndPassword(user.Email, user.Password)
+            .addOnCompleteListener(context) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(context, "Authentication succeeded.", Toast.LENGTH_SHORT).show()
+                    //Add_New User...
+                    val u = fireAuth.currentUser
+                    //user.ID=u!!.uid.toString()
+
+                    UserTable().Add(user)
+
+
+                    //UpdateUI(user)
+
+
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+
+
+    }
+
+    private fun UpdateUI(user: FirebaseUser?) {
+
+
+    }
+
+
 
 
 

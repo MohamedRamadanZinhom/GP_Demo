@@ -10,14 +10,12 @@ class Question(
     @PrimaryKey(autoGenerate = true)
     var ID:Int,
     var QuestionString :String,
-    var Answer:Boolean
+    var Disease_Id:Int
 
 
 ) {
 
-    public  fun _getAnswer():Boolean{
-        return this.Answer
-    }
+
 
     public  fun _getQuestion():String{
         return this.QuestionString
@@ -27,12 +25,17 @@ class Question(
         return this.ID
     }
 
-    public fun _setAnswer(answer:Boolean){
-        this.Answer=answer
+    public  fun _get_DiseaseID():Int{
+        return this.Disease_Id
     }
+
 
     public fun _setQuestion(question:String){
         this.QuestionString=question
+    }
+
+    public fun _setDiseaseId(id:Int){
+        this.Disease_Id=id
     }
 
 
