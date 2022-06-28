@@ -7,142 +7,988 @@
     tools:context=".QuestionTest"
     android:layoutDirection="ltr">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Disease Name : "
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:textColor="#0d6e6a"
-                />
-
-            <TextView
-                android:id="@+id/diseasetype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Heart"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/red"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Question Number : "
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:textColor="#0d6e6a"
-                />
-
-            <TextView
-                android:id="@+id/questionnum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="1/16"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/red"
-                />
-
-        </LinearLayout>
+        android:layout_height="match_parent">
 
 
-
-        <TextView
-            android:id="@+id/questiontxt"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:hint="Start Check..!!"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/questiontext"
-            />
-
-        <EditText
-            android:id="@+id/valuetxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Value"
-            android:inputType="numberDecimal"
-            android:background="@drawable/questiontext"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/backbtn"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_gravity="start"
-                android:background="@drawable/button"
-                android:text="Back"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.063"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.046"
-                android:visibility="invisible"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/nextbtn"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_gravity="end"
-                android:background="@drawable/button"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
 
-                android:text="Start"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.936"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.046" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
+                        <TextView
+                            android:id="@+id/Question_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
 
 
 
+
+                                <RadioGroup
+                                    android:id="@+id/GR_1_Q1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp">
+
+                                    <RadioButton
+                                        android:id="@+id/GR_1_Q1_Yes"
+                                        android:layout_width="150dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Yes"
+                                        android:textSize="20sp"
+                                        android:layout_margin="5dp"
+
+                                        android:textStyle="bold"
+                                        android:textColor="@color/green"
+                                        android:textDirection="ltr"
+
+
+                                        />
+
+                                    <RadioButton
+                                        android:id="@+id/GR_1_Q1_No"
+                                        android:layout_width="150dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="No"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/red"
+                                        android:textDirection="ltr"
+                                        android:layout_margin="5dp"
+                                        />
+
+                                </RadioGroup>
+
+
+
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question2"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+
+
+
+                            <RadioGroup
+                                android:id="@+id/GR_2_Q2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+
+                                <RadioButton
+                                    android:id="@+id/GR_2_Q2_Yes"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yes"
+                                    android:textSize="20sp"
+                                    android:layout_margin="5dp"
+
+                                    android:textStyle="bold"
+                                    android:textColor="@color/green"
+                                    android:textDirection="ltr"
+
+
+                                    />
+
+                                <RadioButton
+                                    android:id="@+id/GR_2_Q2_No"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="No"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/red"
+                                    android:textDirection="ltr"
+                                    android:layout_margin="5dp"
+                                    />
+
+                            </RadioGroup>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question3"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_3_Q3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_3_Q3_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_3_Q3_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question4"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_4_Q4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_4_Q4_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_4_Q4_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question5"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_5_Q5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_5_Q5_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_5_Q5_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question6"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_6_Q6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_6_Q6_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_6_Q6_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question7"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_7_Q7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_7_Q7_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_7_Q7_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question8"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_8_Q8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_8_Q8_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_8_Q8_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question9"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_9_Q9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_9_Q9_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_9_Q9_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question10"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/Gr_10_Q10"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:hint="value"
+                            android:background="@drawable/questiontext"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textColor="@color/green"
+                            android:inputType="number"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question11"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/Gr_11_Q11"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:hint="value"
+                            android:background="@drawable/questiontext"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textColor="@color/green"
+                            android:inputType="number"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question12"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+                        <EditText
+                            android:id="@+id/Gr_12_Q12"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:hint="value"
+                            android:background="@drawable/questiontext"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textColor="@color/green"
+                            android:inputType="number"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question13"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+                     <EditText
+                         android:id="@+id/Gr_13_Q13"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_margin="5dp"
+                         android:hint="value"
+                         android:background="@drawable/questiontext"
+                         android:textSize="15sp"
+                         android:textStyle="bold"
+                         android:textDirection="ltr"
+                         android:textColor="@color/green"
+                         android:inputType="number"
+                         />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question14"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+                        <EditText
+                            android:id="@+id/Gr_14_Q14"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:hint="value"
+                            android:background="@drawable/questiontext"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textColor="@color/green"
+                            android:inputType="number"
+                            />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question15"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+                        <EditText
+                            android:id="@+id/Gr_15_Q15"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:hint="value"
+                            android:background="@drawable/questiontext"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textColor="@color/green"
+                            android:inputType="number"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/Question_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Question16"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textDirection="ltr"
+                            android:textSize="23sp"
+                            android:padding="10dp"
+                            />
+
+
+                        <RadioGroup
+                            android:id="@+id/GR_16_Q16"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <RadioButton
+                                android:id="@+id/GR_16_Q16_Yes"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Male"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/green"
+                                android:textDirection="ltr"
+
+
+                                />
+
+                            <RadioButton
+                                android:id="@+id/GR_16_Q16_No"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Female"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/red"
+                                android:textDirection="ltr"
+                                android:layout_margin="5dp"
+                                />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/submitbtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:background="@drawable/button"
+                    android:textDirection="ltr"
+                   android:layout_margin="10dp" />
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+        </ScrollView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

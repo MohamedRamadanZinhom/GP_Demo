@@ -11,10 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
@@ -26,10 +23,16 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.mohamed_ramadan.code.gpdemo.UI.InputFragment
+import com.mohamed_ramadan.code.gpdemo.UI.Start_Check
+import com.mohamed_ramadan.code.gpdemo.UI.YesNoFragment
+import kotlinx.android.synthetic.main.fragment_input.*
 import kotlinx.android.synthetic.main.fragment_question_test.*
 import kotlinx.android.synthetic.main.fragment_question_test.view.*
+import kotlinx.android.synthetic.main.fragment_yes_no.*
 import kotlinx.coroutines.*
 import org.json.JSONObject
+import kotlin.concurrent.thread
 
 
 class QuestionTest : Fragment() {
@@ -37,13 +40,26 @@ class QuestionTest : Fragment() {
 
 
 
+    companion object {
+
+        var UserAnswer:String="1"
+
+    }
+
     //API Variable
     var dialog: ProgressDialog? = null
     var volleyRequestQueue: RequestQueue? = null
     val serverAPIURL: String = "https://heart-deteact-fci.herokuapp.com/predict"
 
 
+
     //APP Variable
+
+    var FIndex:Int=1
+
+
+
+    lateinit var fragmentlist: Array<Fragment>
     lateinit var Repo: Repository
     lateinit var all_Question:ArrayList<Question>
     lateinit var list: List<Question>
@@ -56,102 +72,120 @@ class QuestionTest : Fragment() {
     private lateinit var APIResult:String
 
 
+
+    //
+
+
+    lateinit var q1:TextView
+    lateinit var q2:TextView
+    lateinit var q3:TextView
+    lateinit var q4:TextView
+    lateinit var q5:TextView
+    lateinit var q6:TextView
+    lateinit var q7:TextView
+    lateinit var q8:TextView
+    lateinit var q9:TextView
+    lateinit var q10:TextView
+    lateinit var Q11:TextView
+    lateinit var Q12:TextView
+    lateinit var Q13:TextView
+    lateinit var Q14:TextView
+    lateinit var Q15:TextView
+    lateinit var Q16:TextView
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+
         ActionBar.DISPLAY_HOME_AS_UP
-
-
+        UserAnswer=""
 
         // Inflate the layout for this fragment
         val view= inflater.inflate(R.layout.fragment_question_test, container, false)
 
+        //Initialize Questions Fragments
+
+        //Back Button Pressed is False
         IS_Backed=false
 
 
         //DECLARATION
 
-        button=view.findViewById(R.id.nextbtn)
-        Previousbtn=view.findViewById(R.id.backbtn)
+ /*       val q1=view.findViewById<TextView>(R.id.Question_1)
+        val q2=view.findViewById<TextView>(R.id.Question_2)
+        val q3=view.findViewById<TextView>(R.id.Question_3)
+        val q4=view.findViewById<TextView>(R.id.Question_4)
+        val q5=view.findViewById<TextView>(R.id.Question_5)
+        val q6=view.findViewById<TextView>(R.id.Question_6)
+        val q7=view.findViewById<TextView>(R.id.Question_7)
+        val q8=view.findViewById<TextView>(R.id.Question_8)
+        val q9=view.findViewById<TextView>(R.id.Question_9)
+        val q10=view.findViewById<TextView>(R.id.Question_10)
+        val Q11=view.findViewById<TextView>(R.id.Question_11)
+        val Q12=view.findViewById<TextView>(R.id.Question_12)
+        val Q13=view.findViewById<TextView>(R.id.Question_13)
+        val Q14=view.findViewById<TextView>(R.id.Question_14)
+        val Q15=view.findViewById<TextView>(R.id.Question_15)
+        val Q16=view.findViewById<TextView>(R.id.Question_16)*/
+
+        q1=view.findViewById<TextView>(R.id.Question_1)
+        q2=view.findViewById<TextView>(R.id.Question_2)
+        q3=view.findViewById<TextView>(R.id.Question_3)
+        q4=view.findViewById<TextView>(R.id.Question_4)
+        q5=view.findViewById<TextView>(R.id.Question_5)
+        q6=view.findViewById<TextView>(R.id.Question_6)
+        q7=view.findViewById<TextView>(R.id.Question_7)
+        q8=view.findViewById<TextView>(R.id.Question_8)
+        q9=view.findViewById<TextView>(R.id.Question_9)
+        q10=view.findViewById<TextView>(R.id.Question_10)
+        Q11=view.findViewById<TextView>(R.id.Question_11)
+        Q12=view.findViewById<TextView>(R.id.Question_12)
+        Q13=view.findViewById<TextView>(R.id.Question_13)
+        Q14=view.findViewById<TextView>(R.id.Question_14)
+        Q15=view.findViewById<TextView>(R.id.Question_15)
+        Q16=view.findViewById<TextView>(R.id.Question_16)
+
+
 
         all_Question= ArrayList<Question>()
         all_Answer= ArrayList()
+
 
         list= emptyList()
         APIResult="0"
 
         //GreateQuestion() //FOR CREATE LIST OF QUESTION USED FOR ONE TIME
 
-
-
-
         //PREPARE THE DATABASE
-
         val db =Question_Database.getAppDatabase(this.requireActivity())
         Repo= Repository(db)
 
         //GET QUESTIONS FROM DATABASE
-
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main){
                 Get_All_Question()
+
             }
         }
 
 
-        //SHOW FIRST ITEM ON THE DATABASE
-/*
-        GlobalScope.launch(Dispatchers.Main) {
-            withContext(Dispatchers.Main){
-               // view.questiontxt.setText(list[0].QuestionString)
-            }
-        }*/
-        //Position++
 
 
 
 
-        button.setOnClickListener {
-
-            if(button.text=="Start"){
-
-                Previousbtn.visibility=View.VISIBLE
-                NextFun()
-               // button.text="Next"
-               // Toast.makeText(this.requireContext(),"Start",Toast.LENGTH_SHORT).show()
-            }
-            else if (button.text=="Next"){
-                NextFun()
-              //  Toast.makeText(this.requireContext(),"Next",Toast.LENGTH_SHORT).show()
-
-            }
-            else if(button.text=="Submit"){
-
-                if(IS_Backed==false)
-                {
-                    RunTest(view)
-                }
-                else{ RunBackTest(view) }
 
 
+        val btn =view.findViewById<Button>(R.id.submitbtn)
 
-               // Toast.makeText(this.requireContext(),"Submit",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Submit()
-               // Toast.makeText(this.requireContext(),"Predict",Toast.LENGTH_SHORT).show()
-            }
-
-
-
+        btn.setOnClickListener{
+            Run()
         }
 
-        Previousbtn.setOnClickListener{
-            BackFun()
 
-        }
 
 
         return view
@@ -159,29 +193,219 @@ class QuestionTest : Fragment() {
 
 
 
-    private fun BackFun() {
 
-        Position--
-        Update(Position)
-        IS_Backed=true
+
+    private fun FillQuestionFields(){
+
+        val q1=this.requireView().findViewById<TextView>(R.id.Question_1)
+        q1.setText(all_Question[0].toString())
+        val q2=this.requireView().findViewById<TextView>(R.id.Question_2)
+        q2.setText(all_Question[1].toString())
+        val q3=this.requireView().findViewById<TextView>(R.id.Question_3)
+        q3.setText(all_Question[2].toString())
+        val q4=this.requireView().findViewById<TextView>(R.id.Question_4)
+        q4.setText(all_Question[3].toString())
+        val q5=this.requireView().findViewById<TextView>(R.id.Question_5)
+        q5.setText(all_Question[4].toString())
+        val q6=this.requireView().findViewById<TextView>(R.id.Question_6)
+        q6.setText(all_Question[5].toString())
+        val q7=this.requireView().findViewById<TextView>(R.id.Question_7)
+        q7.setText(all_Question[6].toString())
+        val q8=this.requireView().findViewById<TextView>(R.id.Question_8)
+        q8.setText(all_Question[7].toString())
+        val q9=this.requireView().findViewById<TextView>(R.id.Question_9)
+        q9.setText(all_Question[8].toString())
+        val q10=this.requireView().findViewById<TextView>(R.id.Question_10)
+        q10.setText(all_Question[9].toString())
+        val Q11=this.requireView().findViewById<TextView>(R.id.Question_11)
+        Q11.setText(all_Question[10].toString())
+        val Q12=this.requireView().findViewById<TextView>(R.id.Question_12)
+        Q12.setText(all_Question[11].toString())
+        val Q13=this.requireView().findViewById<TextView>(R.id.Question_13)
+        Q13.setText(all_Question[12].toString())
+        val Q14=this.requireView().findViewById<TextView>(R.id.Question_14)
+        Q14.setText(all_Question[13].toString())
+        val Q15=this.requireView().findViewById<TextView>(R.id.Question_15)
+        Q15.setText(all_Question[14].toString())
+        val Q16=this.requireView().findViewById<TextView>(R.id.Question_16)
+        Q16.setText(all_Question[15].toString())
+
+
     }
 
-    private fun NextFun() {
 
-        Position++
-        Update(Position)
-        IS_Backed=false
+    private fun Run(){
+
+        for (i in 1..16){
+            all_Answer.add("0")
+        }
+
+        if(Check()){
+
+            all_Answer[0]=Gr1().toString()
+            all_Answer[1]=Gr2().toString()
+            all_Answer[2]=Gr3().toString()
+            all_Answer[3]=Gr4().toString()
+            all_Answer[4]=Gr5().toString()
+            all_Answer[5]=Gr6().toString()
+            all_Answer[6]=Gr7().toString()
+            all_Answer[7]=Gr8().toString()
+            all_Answer[8]=Gr9().toString()
+
+
+            all_Answer[9]=Gr_10_Q10.text.toString()
+            all_Answer[10]=Gr_11_Q11.text.toString()
+            all_Answer[11]=Gr_12_Q12.text.toString()
+            all_Answer[12]=AgeCategory(Gr_13_Q13.text.toString().toInt()).toString()
+            all_Answer[13]=GeneralHealthValue( Gr_14_Q14.text.toString().toInt()).toString()
+            all_Answer[14]=Gr_15_Q15.text.toString()
+
+            all_Answer[15]=Gr16().toString()
+
+
+
+            Submit()
+
+
+        }
+    }
+
+    private fun Gr1():Int{
+
+        val id=GR_1_Q1.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr2():Int{
+
+        val id=GR_2_Q2.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr3():Int{
+
+        val id=GR_3_Q3.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr4():Int{
+
+        val id=GR_4_Q4.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr5():Int{
+
+        val id=GR_5_Q5.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr6():Int{
+
+        val id=GR_6_Q6.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr7():Int{
+
+        val id=GR_7_Q7.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr8():Int{
+
+        val id=GR_8_Q8.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
+
+    }
+
+    private fun Gr9():Int{
+
+        val id=GR_9_Q9.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Yes"){return 1}
+        else {return 0}
 
     }
 
 
-    private fun Update(pos:Int){
 
-        questiontxt.setText(list[pos].QuestionString)
-        this.requireView().questionnum.setText((pos+1).toString() +"/"+ "16")
-        this.button.setText("Submit")
+
+
+    private fun Gr16():Int{
+
+        val id=GR_16_Q16.checkedRadioButtonId
+
+        val rbtn=this.activity?.findViewById<RadioButton>(id)
+
+        if (rbtn?.text=="Male"){return 1}
+        else {return 0}
 
     }
+
+    private fun Check():Boolean{
+
+
+        return ! Gr_10_Q10.text.toString().isEmpty() && !Gr_10_Q10.text.toString().isBlank()
+        return ! Gr_11_Q11.text.toString().isBlank() && !Gr_11_Q11.text.toString().isEmpty()
+        return ! Gr_12_Q12.text.toString().isEmpty() && !Gr_12_Q12.text.toString().isBlank()
+        return ! Gr_13_Q13.text.toString().isBlank() && !Gr_13_Q13.text.toString().isEmpty()
+        return ! Gr_14_Q14.text.toString().isEmpty() && !Gr_14_Q14.text.toString().isBlank()
+        return !Gr_15_Q15.text.toString().isBlank() && ! Gr_15_Q15.text.toString().isEmpty()
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     private fun Submit(){
 
@@ -205,25 +429,28 @@ class QuestionTest : Fragment() {
         when(Position) {
 
             13->{
-                val v=GeneralHealthValue(view.valuetxt.text.toString().toInt()) //General Health case
+                val value=UserAnswer
+                UserAnswer=GeneralHealthValue(value.toInt()).toString() //General Health case
 
-                all_Answer.add(v.toString())
+                AddAnswer()
                 //Toast.makeText(this.requireContext(),"general health  = ${all_Answer[Position]} ",Toast.LENGTH_SHORT).show()
                 button.setText("Next")
             }
             12->{
-                val v=AgeCategory(view.valuetxt.text.toString().toInt())   // age category case
+                val value=UserAnswer
+                UserAnswer=AgeCategory(value.toInt()).toString()   // age category case
 
-                all_Answer.add(v.toString())
+                AddAnswer()
                // Toast.makeText(this.requireContext(),"Age category  = ${all_Answer[Position]} ",Toast.LENGTH_SHORT).show()
                 button.setText("Next")
             }
             15->{
-                AddAnswer(view)
+
+                AddAnswer()
                 button.setText("Predict")
             }
             else -> { // Note the block
-                AddAnswer(view)
+                AddAnswer()
                 button.setText("Next")
             }
 
@@ -238,23 +465,27 @@ class QuestionTest : Fragment() {
         when(Position) {
 
             13->{
-                val v=GeneralHealthValue(view.valuetxt.text.toString().toInt()) //General Health case
+                val value=user_ans.text.toString()
+                UserAnswer=GeneralHealthValue(value.toInt()).toString() //General Health case
                // Toast.makeText(this.requireContext(),"general health v = $v ",Toast.LENGTH_SHORT).show()
-                all_Answer[Position]=(v.toString())
+                UpdateAnswer()
                 button.setText("Next")
             }
             12->{
-                val v=AgeCategory(view.valuetxt.text.toString().toInt())   // age category case
+                val value=user_ans.text.toString()
+                UserAnswer=AgeCategory(value.toInt()).toString()  // age category case
                 //Toast.makeText(this.requireContext(),"Age category v = $v ",Toast.LENGTH_SHORT).show()
-                all_Answer[Position]=(v.toString())
+                UpdateAnswer()
                 button.setText("Next")
             }
             15->{
-                UpdateAnswer(view)
+
+                UpdateAnswer()
                 button.setText("Predict")
             }
             else -> { // Note the block
-                UpdateAnswer(view)
+
+                UpdateAnswer()
                 button.setText("Next")
             }
 
@@ -262,6 +493,8 @@ class QuestionTest : Fragment() {
 
 
     }
+
+
 
 
 
@@ -273,31 +506,47 @@ class QuestionTest : Fragment() {
 
         GlobalScope.launch(Dispatchers.IO) {
              val l=async {  Repo.ReadAllData() }
-             list=  l.await()
+
+            withContext(Dispatchers.Main  ){
+                list=  l.await()
+
+
+
+                q1.setText(l.await()[0].QuestionString.toString())
+                q2.setText(l.await()[1].QuestionString.toString())
+                q3.setText(l.await()[2].QuestionString.toString())
+                q4.setText(l.await()[3].QuestionString.toString())
+                q5.setText(l.await()[4].QuestionString.toString())
+                q6.setText(l.await()[5].QuestionString.toString())
+                q7.setText(l.await()[6].QuestionString.toString())
+                q8.setText(l.await()[7].QuestionString.toString())
+                q9.setText(l.await()[8].QuestionString.toString())
+                q10.setText(l.await()[9].QuestionString.toString())
+                Q11.setText(l.await()[10].QuestionString.toString())
+                Q12.setText(l.await()[11].QuestionString.toString())
+                Q13.setText(l.await()[12].QuestionString.toString())
+                Q14.setText(l.await()[13].QuestionString.toString())
+                Q15.setText(l.await()[14].QuestionString.toString())
+                Q16.setText(l.await()[15].QuestionString.toString())
+
+            }
+
+
+
         }
+
 
     }
 
 
     //Add Answer To The List
-    private fun AddAnswer(view:View){
-        if(!(view.valuetxt.text.isEmpty() || view.valuetxt.text.isBlank()) ){
-            all_Answer.add(view.valuetxt.text.toString())
-        }
-        else{
-            Toast.makeText(this.requireContext(),"Please Enter the  value",Toast.LENGTH_SHORT).show()
-        }
+    private fun AddAnswer(){
+        all_Answer.add(UserAnswer)
     }
 
     //Update Answer
-    private fun UpdateAnswer(view:View){
-
-        if(!(view.valuetxt.text.isEmpty() || view.valuetxt.text.isBlank()) ){
-            all_Answer[Position]=(view.valuetxt.text.toString())
-        }
-        else{
-            Toast.makeText(this.requireContext(),"Please Enter the  value",Toast.LENGTH_SHORT).show()
-        }
+    private fun UpdateAnswer(){
+        all_Answer[Position]=UserAnswer
     }
 
 
@@ -366,8 +615,7 @@ class QuestionTest : Fragment() {
     }
 
 
-    //API Function THank You EBRAHIM MOSSAD
-
+    //API Function Thanks EBRAHIM MOSSAD
     private fun SendSignUpDataToServer(all_Answer:ArrayList<String>) {
 
 
@@ -442,6 +690,7 @@ class QuestionTest : Fragment() {
         // Adding request to request queue
         volleyRequestQueue?.add(strReq)
     }
+
 
     //use for one time
     private fun GreateQuestion(){
